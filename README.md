@@ -14,7 +14,6 @@ https://trac.ffmpeg.org/wiki/HWAccelIntro
 https://developer.nvidia.com/ffmpeg
 Getting Started with FFmpeg/libav using NVIDIA GPUs
 Using NVIDIA hardware acceleration in FFmpeg/libav requires the following steps
-
 Download the latest FFmpeg or libav source code, by cloning the corresponding GIT repositories
 FFmpeg: https://git.ffmpeg.org/ffmpeg.git
 Libav: https://github.com/libav/libav
