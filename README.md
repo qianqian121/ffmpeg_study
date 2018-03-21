@@ -44,4 +44,13 @@ Parameters
 -rc vbr_hq uses RC option to enable variable bitrate encoding with GPU encoding
 -qmin:v 19 -qmax:v 14 sets minimum and maximum quantization values (optional)
 -b:v 6M -maxrate:v 10M sets average (target) and maximum bitrate allowed for the encoder
- 
+Encoding high quality h265/HEVC 10-bit video via GPU:
+ffmpeg.exe -hwaccel cuvid -i inmovie.mov -pix_fmt p010le -c:v hevc_nvenc -preset slow -rc vbr_hq -b:v 6M -maxrate:v 10M -c:a aac -b:a 240k outmovie.mp4 
+Parameters
+-hwaccel cuvid uses NVidia CUDA GPU acceleration for decoding (also working: dxva2)
+-pix_fmt p010le YUV 4:2:0 10-bit
+-c:v hevc_nvenc uses HEVC/h265 GPU hardware encoder
+-preset slow HQ gpu encoding
+-rc vbr_hq uses RC option to enable variable bitrate encoding with GPU encoding
+-qmin:v 19 -qmax:v 14 sets minimum and maximum quantization values (optional)
+-b:v 6M -maxrate:v 10M sets average and maximum bitrate allowed for the encoder 
