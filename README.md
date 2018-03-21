@@ -8,6 +8,8 @@ dev@dev-02:~/ffmpeg_sources/ffmpeg$ ./ffmpeg -y -hwaccel cuvid -c:v h264_cuvid -
 
 dev@dev-02:~/ffmpeg_sources/ffmpeg$ ./ffmpeg -i /mnt/Videos/output0.264 -vcodec copy /mnt/Videos/output0.mp4
 
+dev@dev-02:~/ffmpeg_sources/ffmpeg$ ./ffmpeg -y -hwaccel cuvid -c:v h264_cuvid -vsync 0 -i /mnt/Videos/project_video.mp4 -vf scale_npp=1280:720 -vcodec hevc_nvenc /mnt/Videos/output0.265
+
 https://trac.ffmpeg.org/wiki/HWAccelIntro
 
 
