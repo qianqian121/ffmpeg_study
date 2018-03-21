@@ -56,3 +56,23 @@ Parameters
 -rc vbr_hq uses RC option to enable variable bitrate encoding with GPU encoding
 -qmin:v 19 -qmax:v 14 sets minimum and maximum quantization values (optional)
 -b:v 6M -maxrate:v 10M sets average and maximum bitrate allowed for the encoder 
+
+https://www.reddit.com/r/pcgaming/comments/6vdmv6/guide_hardware_accelerated_h265hevc_encoding_for/
+Guide] Hardware accelerated H265/HEVC encoding for Nvidia GTX 950 or newer card owners with FFMPEG (self.pcgaming)
+submitted 7 months ago * by liufangii5-3570K OC | RX 480 | 16GB
+Lets say you have a large video file (Lagarith | h264 high bitrate | YUV | YV12 | MJPEG | RGB | FRAPS), but your bandwidth makes uploading slow, and your CPU is not powerful enough to encode it in x265? There is a solution: FFMPEG (freeware encoder) supports H265/HEVC encoding using NVENC (hardware).
+Download ffmpeg: http://ffmpeg.zeranoe.com/builds/
+Extract it somewhere, you basically only need ffmpeg.exe (can put it into the folder where you keep your recorded videos).
+In the folder with ffmpeg.exe create ffmpeg.bat file with the following content (edit it in the notepad):
+ffmpeg.exe -i ".\video.mkv" -c:v hevc_nvenc -preset hq -profile:v main10 -tier high -rc constqp -rc-lookahead 40 -no-scenecut 1 -init_qpP 23 -init_qpB 25 -init_qpI 21 -weighted_pred 1 -c:a aac -b:a 320k -ac 2 ".\video_encoded.mkv"
+pause
+".\video.mkv" is the source file that is to be encoded.
+".\video_encoded.mkv" is the name for encoded video.
+You can freely use other containers like .avi, .mp4, etc as well (ffmpeg allows container convertion without re-encoding video).
+-init_qpP 23 -init_qpB 25 -init_qpI 21 are compression level controls, lesser value results in better quality but larger file, higher value results in smaller file but less quality. 23 is a good compromise of size to quality, but you may also use something like 18.
+-b:a 320k is audio bitrate (which can also be 192k or 256k) - use this if your audio stream is lossless. If audio stream is already lossy - replace -c:a aac -b:a 320k -ac 2 with -c:a copy so it will just copy existing audio stream.
+Leave the rest as is.
+If you wonder about all command line parameters - type:
+ffmpeg.exe -h encoder=hevc_nvenc
+pause
+You can also directly encode in HEVC_NVENC if you set OBS-Studio like this: http://imgur.com/a/0jIic , however at the moment i do not know how to pass parameters there.
