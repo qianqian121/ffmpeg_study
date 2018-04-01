@@ -150,6 +150,7 @@ PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig"
   --extra-cflags=-I/usr/local/cuda/include \
   --extra-ldflags=-L/usr/local/cuda/lib64 \
   --bindir="$HOME/bin" \
+  --enable-shared \
   --enable-gpl \
   --enable-libass \
   --enable-libfdk-aac \
