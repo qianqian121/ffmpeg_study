@@ -140,16 +140,16 @@ sudo make install
 cd ~/ffmpeg_sources
 git clone --depth 1 https://github.com/FFmpeg/FFmpeg ffmpeg
 cd ffmpeg
-PATH="$HOME/bin:$PATH"
-PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig"
+#PATH="/opt/ffmpeg/bin:$PATH"
+#PKG_CONFIG_PATH="/opt/ffmpeg/lib/pkgconfig"
 ./configure \
-  --prefix="$HOME/ffmpeg_build" \
+  --prefix="/opt/ffmpeg" \
   --pkg-config-flags="--static" \
   --extra-cflags="-I$HOME/ffmpeg_build/include" \
   --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
   --extra-cflags=-I/usr/local/cuda/include \
   --extra-ldflags=-L/usr/local/cuda/lib64 \
-  --bindir="$HOME/bin" \
+  --bindir="/opt/ffmpeg/bin" \
   --enable-shared \
   --enable-gpl \
   --enable-libass \
@@ -198,7 +198,7 @@ PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig"
 #  --enable-opencl \
 #  --enable-x11grab \ # not available for ubuntu server
 
-PATH="$HOME/bin:$PATH"
+#PATH="/opt/ffmpeg/bin:$PATH"
 make -j
 make install
 hash -r
